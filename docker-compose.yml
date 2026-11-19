@@ -1,0 +1,54 @@
+services:
+  mysql-db:
+    image: mysql
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: test
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3308:3306"
+    networks:
+      - red-data
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    restart: on-failure
+
+  backend:
+    build: ./test15b
+    container_name: backend-spring
+    ports:
+      - "8091:8080"
+    depends_on:
+      - mysql-db
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/test
+      SPRING_DATASOURCE_USERNAME: appuser
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - red-data
+      - red-app
+
+  frontend:
+    build: ./frontend_test
+    container_name: frontend-html
+    ports:
+      - "8082:80"
+    depends_on:
+      - backend
+    networks:
+      - red-app
+    restart: unless-stopped
+
+networks:
+  red-app:
+    driver: bridge
+  red-data:
+    driver: bridge
+    internal: true
+
+volumes:
+  mysql-data:
