@@ -22,19 +22,31 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+          cache: maven
+          cache-dependency-path: test15b/pom.xml
  
       - name: Compilar proyecto
-        run: mvn clean package -DskipTests
+        shell: bash
+        run: |
+          for intento in 1 2 3; do
+            echo "Intento $intento de 3"
+ 
+            if mvn clean package -DskipTests -U; then
+              exit 0
+            fi
+ 
+            if [ "$intento" -lt 3 ]; then
+              echo "Falló la compilación. Esperando 60 segundos..."
+              sleep 60
+            fi
+          done
+ 
+          echo "La compilación falló después de 3 intentos."
+          exit 1
  
       - name: Verificar JAR generado
         run: ls -la target
  
-      - name: Construir imagen Docker
-        run: docker build -t backend-springboot .
-
-      - name: Compilar proyecto
-        run: mvn clean package -DskipTests
-     
       - name: Login Docker Hub
         uses: docker/login-action@v3
         with:
@@ -43,24 +55,25 @@ jobs:
  
       - name: Construir imagen Docker
         run: docker build -t melissasaenzz/backend-spring:latest .
-     
+ 
       - name: Publicar imagen en Docker Hub
         run: docker push melissasaenzz/backend-spring:latest
+ 
   deploy-backend:
     needs: build-backend
-    runs-on: self-
+    runs-on: self-hosted
+ 
     steps:
       - name: Actualizar el contenedor backend
         shell: powershell
         run: |
           cd "C:\Users\lamel\Escritorio\deploy\proyecto_docker_compose_limpio"
-
+ 
           $docker = "C:\Users\lamel\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe"
-
+ 
           & $docker compose pull backend
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
+ 
           & $docker compose up -d backend
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
     

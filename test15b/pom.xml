@@ -11,7 +11,7 @@
 	<groupId>co.edu.ue</groupId>
 	<artifactId>test15</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	 <packaging>jar</packaging>
+	<packaging>jar</packaging>
 	<name>test15B</name>
 	<description/>
 	<url/>
