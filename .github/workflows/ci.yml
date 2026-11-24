@@ -47,15 +47,12 @@ jobs:
      
       - name: Publicar imagen en Docker Hub
         run: docker push melissasaenzz/backend-spring:latest
-  
-jobs:
-  build-backend:
   deploy-backend:
-  needs: build-backend
-  runs-on: self-hosted
-  steps:
-    - name: Actualizar contenedor backend
-      run: |
-        cd C:\Users\lamel\Downloads\proyecto_docker_compose_limpio
-        docker compose pull backend
-        docker compose up -d backend
+    needs: build-backend
+    runs-on: self-hosted
+    steps:
+      - name: Actualizar contenedor backend
+        run: |
+          cd C:\Users\lamel\Downloads\proyecto_docker_compose_limpio
+          docker compose pull backend
+          docker compose up -d backend
