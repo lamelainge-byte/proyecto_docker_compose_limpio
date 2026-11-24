@@ -51,7 +51,7 @@ jobs:
     needs: build-backend
     runs-on: self-hosted
     steps:
-      - name: Actualizar contenedor backend
+      - name: Actualizar el contenedor backend
         run: |
           cd C:\Users\lamel\OneDrive - Uniempresarial\Escritorio\Deploy\proyecto_docker_compose_limpio
           docker compose pull backend
