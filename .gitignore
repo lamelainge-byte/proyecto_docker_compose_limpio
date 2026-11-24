@@ -1,0 +1,21 @@
+cat << 'EOF' > .gitignore
+# Datos locales y sockets de MySQL
+mysql/data/
+*.sock
+
+# Compilados y dependencias de Java / Maven
+target/
+test15b/target/
+*.jar
+*.war
+
+# Carpetas de IDEs y sistema operativo
+.metadata/
+.settings/
+.project
+.classpath
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+EOF
