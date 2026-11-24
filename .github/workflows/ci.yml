@@ -53,7 +53,6 @@ jobs:
     steps:
       - name: Actualizar el contenedor backend
         run: |
-          $env:PATH = "C:\Program Files\Docker\Docker\resources\bin;$env:PATH"
           cd C:\deploy\proyecto_docker_compose_limpio
           docker compose pull backend
           docker compose up -d backend
