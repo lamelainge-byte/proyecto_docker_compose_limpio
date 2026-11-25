@@ -33,7 +33,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend_test
+    image: melissasaenzz/frontend-nginx:latest
     container_name: frontend-html
     ports:
       - "8080:80"
