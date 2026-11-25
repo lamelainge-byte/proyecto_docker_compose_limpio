@@ -35,6 +35,9 @@ public class testController {
 	public List<Prueba> getTesting(){
 		return services.listPrueba();
 	}
-	
+	@GetMapping ("/test_cd")
+		public String cd() {
+		return "Hello from Continuous Deployment";
+	}
 
 }
