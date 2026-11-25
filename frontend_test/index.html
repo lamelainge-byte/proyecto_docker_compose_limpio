@@ -97,6 +97,10 @@
         <button onclick="listar()">Consultar /lista</button>
         <ul id="listaDatos"></ul>
 
+        <h2>parcial</h2>
+        <button onclick="parcial()">parcial</button>
+        <ul id="listaDatos"></ul>
+
     </div>
 
     <script>
@@ -145,6 +149,17 @@
                 .catch(error => {
                     console.error(error);
                     document.getElementById("listaDatos").innerHTML = "<li>Error al consumir /lista</li>";
+                });
+        }
+        function parcial() {
+            fetch(`${API_URL}/parcial`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("resultadoSaludo").innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById("resultadoSaludo").innerText = "Error al consumir /parcial";
+                    console.error(error);
                 });
         }
     </script>
