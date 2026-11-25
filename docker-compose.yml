@@ -36,7 +36,7 @@ services:
     image: melissasaenzz/frontend-nginx:latest
     container_name: frontend-html
     ports:
-      - "8080:80"
+      - "8082:80"
     depends_on:
       - backend
     networks:

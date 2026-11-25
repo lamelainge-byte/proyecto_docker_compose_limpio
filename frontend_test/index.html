@@ -1,26 +1,103 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend Spring Boot</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        .contenedor {
+            max-width: 650px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #245b91;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #444;
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #2878bd;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background-color: #1c5d96;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 130px;
+            margin-right: 5px;
+        }
+
+        p {
+            color: #2878bd;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            background-color: #f2f4f7;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>Consumo API Spring Boot docker</h1>
+    <div class="contenedor">
 
-    <h2>Saludar</h2>
-    <button onclick="saludar()">Probar /saludar</button>
-    <p id="resultadoSaludo"></p>
+        <h1>Consumo API Spring Boot Docker</h1>
 
-    <h2>Sumar dos números</h2>
-    <input type="number" id="numero1" placeholder="Número 1">
-    <input type="number" id="numero2" placeholder="Número 2">
-    <button onclick="sumar()">Sumar</button>
-    <p id="resultadoSuma"></p>
+        <h2>Saludar</h2>
+        <button onclick="saludar()">Probar /saludar</button>
+        <p id="resultadoSaludo"></p>
 
-    <h2>Lista desde base de datos</h2>
-    <button onclick="listar()">Consultar /lista</button>
-    <ul id="listaDatos"></ul>
+        <h2>Sumar dos números</h2>
+        <input type="number" id="numero1" placeholder="Número 1">
+        <input type="number" id="numero2" placeholder="Número 2">
+        <button onclick="sumar()">Sumar</button>
+        <p id="resultadoSuma"></p>
+
+        <h2>Lista desde base de datos</h2>
+        <button onclick="listar()">Consultar /lista</button>
+        <ul id="listaDatos"></ul>
+
+    </div>
 
     <script>
         const API_URL = "/api";
