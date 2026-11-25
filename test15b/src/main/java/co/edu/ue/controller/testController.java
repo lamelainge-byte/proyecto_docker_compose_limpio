@@ -39,5 +39,9 @@ public class testController {
 		public String cd() {
 		return "Hello from Continuous Deployment";
 	}
+	@GetMapping ("/parcial")
+		public String parcial() {
+		return "parcial 16a";
+	}
 
 }
